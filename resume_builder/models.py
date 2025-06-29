@@ -1,4 +1,4 @@
-from django.conf import settings
+from django.conf import settingsMore actions
 from django.contrib.postgres.indexes import GinIndex
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -27,6 +27,7 @@ class ResumeTemplate(models.Model):
 
     class Meta:
         indexes = [GinIndex(fields=['config'])]
+        # indexes = [GinIndex(fields=['config'])]
         ordering = ['-version', 'name']
 
     def __str__(self):

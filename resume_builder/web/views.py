@@ -1,4 +1,4 @@
-# Python
+# PythonMore actions
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -7,6 +7,7 @@ from resume_builder.forms import WorkExperienceForm
 
 class WorkExperienceListView(LoginRequiredMixin, ListView):
     model = WorkExperience
+    template_name = 'work_experience_list.html'
     template_name = 'resume_builder/work_experience/work_experience_list.html'
     context_object_name = 'experiences'
 
@@ -16,6 +17,7 @@ class WorkExperienceListView(LoginRequiredMixin, ListView):
 class WorkExperienceCreateView(LoginRequiredMixin, CreateView):
     model = WorkExperience
     form_class = WorkExperienceForm
+    template_name = 'work_experience_form.html'
     template_name = 'resume_builder/work_experience/work_experience_form.html'
     success_url = reverse_lazy('work_experience_list')
 
@@ -30,6 +32,7 @@ class WorkExperienceCreateView(LoginRequiredMixin, CreateView):
 class WorkExperienceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = WorkExperience
     form_class = WorkExperienceForm
+    template_name = 'work_experience_form.html'
     template_name = 'resume_builder/work_experience/work_experience_form.html'
     success_url = reverse_lazy('work_experience_list')
 
@@ -38,6 +41,7 @@ class WorkExperienceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVi
 
 class WorkExperienceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = WorkExperience
+    template_name = 'work_experience_confirm_delete.html'
     template_name = 'resume_builder/work_experience/work_experience_confirm_delete.html'
     success_url = reverse_lazy('work_experience_list')
 
@@ -46,8 +50,8 @@ class WorkExperienceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVi
 
 class WorkExperienceDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = WorkExperience
+    template_name = 'work_experience_detail.html'
     template_name = 'resume_builder/work_experience/work_experience_detail.html'
     context_object_name = 'experience'
 
     def test_func(self):
-        return self.get_object().resume.user == self.request.user

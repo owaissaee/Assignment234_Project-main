@@ -1,4 +1,4 @@
-"""
+"""More actions
 URL configuration for core project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -25,7 +25,6 @@ web_patterns = [
     # resume_builder web URLs
     path('web/', include('resume_builder.web.urls')),
     path('web/', include('accounts.web.urls')),
-    path('', include('dashboard.urls')),
 ]
 apis_patterns = [
     path('api/v1/schema/', SpectacularAPIView.as_view(), name='schema'),
@@ -39,4 +38,3 @@ apis_patterns = [
 
 urlpatterns = web_patterns + apis_patterns
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
